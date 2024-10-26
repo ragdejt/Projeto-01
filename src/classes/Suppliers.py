@@ -11,7 +11,6 @@ class Fornecedor():
     phone:int
     email:str
 
-
 ID_1000 = Fornecedor(
     name="Fornecedor-1",
     cnpj=13344677590,
@@ -55,9 +54,9 @@ ID_1003 = Fornecedor(
 ID_1004 = Fornecedor(
     name="Fornecedor-5",
     cnpj=56983472109,
-    address="Rua Cinco, 202, Curitiba, PR",
-    city="",
-    state="",
+    address="Rua Cinco, 202",
+    city="Curitiba",
+    state="PR",
     phone=41987654321,
     email="fornecedor5@empresa.com"
 )
@@ -65,9 +64,9 @@ ID_1004 = Fornecedor(
 ID_1005 = Fornecedor(
     name="Fornecedor-6",
     cnpj=61029384756,
-    address="Avenida Seis, 303, Salvador, BA",
-    city="",
-    state="",
+    address="Avenida Seis, 303",
+    city="Salvador",
+    state="BA",
     phone=7187654321,
     email="fornecedor6@empresa.com"
 )
@@ -75,9 +74,9 @@ ID_1005 = Fornecedor(
 ID_1006 = Fornecedor(
     name="Fornecedor-7",
     cnpj=72384910567,
-    address="Rua Sete, 404, Recife, PE",
-    city="",
-    state="",
+    address="Rua Sete, 404",
+    city="Recife",
+    state="PE",
     phone=8187654321,
     email="fornecedor7@empresa.com"
 )
@@ -85,9 +84,9 @@ ID_1006 = Fornecedor(
 ID_1007 = Fornecedor(
     name="Fornecedor-8",
     cnpj=83471029348,
-    address="Rua Oito, 505, Manaus, AM",
-    city="",
-    state="",
+    address="Rua Oito, 505",
+    city="Manaus",
+    state="AM",
     phone=92987654321,
     email="fornecedor8@empresa.com"
 )
@@ -105,9 +104,9 @@ ID_1008 = Fornecedor(
 ID_1009 = Fornecedor(
     name="Fornecedor-10",
     cnpj=10938475629,
-    address="Rua Dez, 707, Fortaleza, CE",
-    city="",
-    state="",
+    address="Rua Dez, 707",
+    city="Fortaleza",
+    state="CE",
     phone=8587654321,
     email="fornecedor10@empresa.com"
 )
