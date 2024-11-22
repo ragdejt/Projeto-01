@@ -1,45 +1,43 @@
 import customtkinter
-def create_app(geometry:str):
+from tkinter import filedialog
+def create_app(titulo, geometria):
     app = customtkinter.CTk()
-    app.title("PROJETO-01")
-    app.geometry(geometry)
+    app.title(titulo)
+    app.geometry(geometria)
     app.resizable(False, False)
     app._set_appearance_mode("dark")
     return app
 
-def create_frame(frame, coluna:int, linha:int, expand:str):
-    frame = customtkinter.CTkFrame(master=frame)
+def create_frame(master, coluna, linha, expand):
+    frame = customtkinter.CTkFrame(master=master)
     frame.grid(column=coluna, row=linha, sticky=expand, padx=5, pady=5)
     return frame
 
-def create_button(frame, texto:str, comando):
-    button = customtkinter.CTkButton(master=frame, text=texto, command=comando)
-    button.grid(sticky="nsew", padx=5, pady=5)
-    return button
-
-def create_entry(frame, texto:str):
-    entry = customtkinter.CTkEntry(master=frame, placeholder_text=texto)
-    entry.grid(sticky="nsew", padx=5, pady=5)
+def create_entry(master, texto, coluna, linha, expand):
+    entry = customtkinter.CTkEntry(master=master, placeholder_text=texto)
+    entry.grid(column=coluna, row=linha, sticky=expand, padx=5, pady=5)
     return entry
 
-def create_label(frame, texto:str):
-    label = customtkinter.CTkLabel(master=frame, text=texto)
-    label.grid(sticky="nsew", padx=5, pady=5)
+def create_button(master, texto, coluna, linha, expand, comando):
+    button = customtkinter.CTkButton(master=master, text=texto, command=comando)
+    button.grid(column=coluna, row=linha, sticky=expand, padx=5, pady=5)
+    return button
+
+def create_label(master, texto, coluna, linha, expand):
+    label = customtkinter.CTkLabel(master=master, text=texto)
+    label.grid(column=coluna, row=linha, sticky=expand, padx=5, pady=5)
     return label
 
-def create_menu_opt(frame, valores):
+def create_menu_opt(frame, valores, coluna, linha, expand):
     menu = customtkinter.CTkOptionMenu(master=frame, values=valores)
-    menu.grid(sticky="nsew", padx=5, pady=5)
+    menu.grid(column=coluna, row=linha, sticky=expand, padx=5, pady=5)
     return menu
 
-    
-
-def popup():
-    def destroy_app():
-        info_cadastrada.destroy()
-    info_cadastrada = create_app("360x100")
-    frame0 = create_frame(info_cadastrada, 0, 0, "nsew")
-    frame0.grid_columnconfigure(0, weight=1)
-    create_label(frame0, "Informação cadastrada")
-    create_button(frame0, "Fechar", destroy_app)
-    info_cadastrada.mainloop()
+def select_file(entry_file):
+    file_path = filedialog.askopenfilename(
+        title="Selecione o arquivo",
+        filetypes=(("Arquivos PDF", "*.pdf"), ("Todos os arquivos", "*.*"))
+    )
+    if file_path:
+        entry_file.delete(0, "end")
+        entry_file.insert(0, file_path)

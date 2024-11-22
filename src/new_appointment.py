@@ -1,6 +1,6 @@
 import time
 import pandas
-from constants import SCRIPT_FOLDER_2_1, COLUMN_LIST_APPOINTMENT, SPREADSHEET_NAME
+from constants import SCRIPT_FOLDER_2, COLUMN_LIST_APPOINTMENT, SPREADSHEET_NAME
 from functions import create_app, create_button, create_entry, create_frame, popup
 
 
@@ -18,7 +18,7 @@ def app_new_appointment():
             "DATA/AGENDAMENTO":[data_agendamento.get()],
         }
         spreadsheet_name = time.strftime(SPREADSHEET_NAME)
-        with pandas.ExcelWriter(path=SCRIPT_FOLDER_2_1 / (spreadsheet_name + ".xlsx"), engine="xlsxwriter") as writer:
+        with pandas.ExcelWriter(path=SCRIPT_FOLDER_2 / (spreadsheet_name + ".xlsx"), engine="xlsxwriter") as writer:
             pandas.DataFrame(columns=COLUMN_LIST_APPOINTMENT, data=new_data).to_excel(writer, sheet_name=spreadsheet_name, index=False)
         
         cliente.delete(0, "end")

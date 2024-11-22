@@ -1,8 +1,8 @@
 import sqlite3
 import customtkinter
-from functions import create_app, create_frame, create_label, create_entry, create_button
-from new_employee import app_new_employee
+from functions import *
 from constants import DB_USUARIOS
+from menu import menu
 
 def login():
     connect = sqlite3.connect(DB_USUARIOS)
@@ -29,18 +29,19 @@ def login():
         if result:
             label1.configure(text="Usuário encontrado")
             app.destroy()
+            menu()
         else:
             label1.configure(text="Usuário não encontrado")
         connect.close()
 
-    app = create_app("350x175")
+    app = create_app("Login", "350x175")
     app.grid_columnconfigure(0, weight=1)
     app.grid_rowconfigure(0, weight=1)
     frame0 = create_frame(app, 0, 0, "nsew")
     frame0.grid_columnconfigure(0, weight=1)
-    label1 = create_label(frame0, "Login")
-    username = create_entry(frame0, "Usuario")
+    label1 = create_label(frame0, "Login", 0, 0, "nsew")
+    username = create_entry(frame0, "Usuario", 0, 1, "nsew")
     password = customtkinter.CTkEntry(master=frame0, placeholder_text="Senha", show="*")
-    password.grid(sticky="nsew", padx=5, pady=5)
-    create_button(frame0, "Entrar", verify_login)
+    password.grid(column=0, row=2, sticky="nsew", padx=5, pady=5)
+    create_button(frame0, "Entrar", 0, 3, "nsew", verify_login)
     app.mainloop()
