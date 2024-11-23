@@ -1,6 +1,7 @@
 import tkinter
 from functions import *
 from new_employee import app_new_employee
+from new_appointment import app_new_appointment
 def menu():
     # App.
     app = create_app("MENU PRINCIPAL", "1080x960")
@@ -15,6 +16,7 @@ def menu():
     rem_menu = tkinter.Menu(menu_principal, tearoff=0)
     report_menu = tkinter.Menu(menu_principal, tearoff=0)
     log_menu = tkinter.Menu(menu_principal, tearoff=0)
+    help_menu = tkinter.Menu(menu_principal, tearoff=0)
     # Abrir.
     menu_principal.add_cascade(label="Abrir", menu=open_menu)
     open_menu.add_command(label="Funcionario", command=None)
@@ -45,7 +47,7 @@ def menu():
     add_menu.add_command(label="Fornecedor", command=None)
     add_menu.add_command(label="Cliente", command=None)
     add_menu.add_command(label="Estoque", command=None)
-    add_menu.add_command(label="Agendamento", command=None)
+    add_menu.add_command(label="Agendamento", command=app_new_appointment)
     add_menu.add_command(label="Separação", command=None)
     add_menu.add_command(label="Expedição", command=None)
     add_menu.add_command(label="Compra", command=None)
@@ -87,6 +89,9 @@ def menu():
     log_menu.add_command(label="Compra", command=None)
     log_menu.add_command(label="Venda", command=None)
     log_menu.add_command(label="Financeiro", command=None)
+    # Ajuda.
+    menu_principal.add_cascade(label="Ajuda", menu=help_menu)
+    help_menu.add
 
     app.config(menu=menu_principal)
 

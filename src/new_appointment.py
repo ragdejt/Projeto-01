@@ -1,7 +1,8 @@
 import time
 import pandas
+from tkinter import messagebox
 from constants import SCRIPT_FOLDER_2, COLUMN_LIST_APPOINTMENT, SPREADSHEET_NAME
-from functions import create_app, create_button, create_entry, create_frame, popup
+from functions import create_app, create_button, create_entry, create_frame
 
 
 def app_new_appointment():
@@ -31,28 +32,28 @@ def app_new_appointment():
         resp_agendamento.delete(0, "end")
         data_agendamento.delete(0, "end")
 
-        popup()
+        messagebox.showinfo("Informação cadastrada", "Informação cadastrada")
 
-    app = create_app("480x480")
+    app = create_app("Novo agendamento","480x400")
     app.grid_columnconfigure(0, weight=1)
     
     frame0 = create_frame(app, 0, 0, "nsew")
     frame0.grid_columnconfigure(0, weight=1)
     frame0.grid_rowconfigure(0, weight=1)
  
-    cliente = create_entry(frame0, "Cliente")
-    produto = create_entry(frame0, "Produto")
-    material = create_entry(frame0, "Material")
-    altura = create_entry(frame0, "Altura")
-    largura = create_entry(frame0, "Largura")
-    comprimento = create_entry(frame0, "Comprimento")
-    quantidade = create_entry(frame0, "Quantidade")
-    resp_agendamento = create_entry(frame0, "Responsavel/Agendamento")
-    data_agendamento = create_entry(frame0, "Data/Agendamento")
+    cliente = create_entry(frame0, "Cliente", 0, 0, "nsew")
+    produto = create_entry(frame0, "Produto", 0, 1, "nsew")
+    material = create_entry(frame0, "Material", 0, 2, "nsew")
+    altura = create_entry(frame0, "Altura", 0, 3, "nsew")
+    largura = create_entry(frame0, "Largura", 0, 4, "nsew")
+    comprimento = create_entry(frame0, "Comprimento", 0, 5, "nsew")
+    quantidade = create_entry(frame0, "Quantidade", 0, 6, "nsew")
+    resp_agendamento = create_entry(frame0, "Responsavel/Agendamento", 0, 7, "nsew")
+    data_agendamento = create_entry(frame0, "Data/Agendamento", 0, 8, "nsew")
 
-    frame1 = create_frame(app, 0, 8, "nsew")
+    frame1 = create_frame(app, 0, 1, "nsew")
     frame1.grid_columnconfigure(0, weight=1)
     frame1.grid_rowconfigure(1, weight=1)
-    create_button(frame1, "Cadastrar", button_new_appointment)
+    create_button(frame1, "Cadastrar", 0, 0, "nsew", button_new_appointment)
 
     app.mainloop()

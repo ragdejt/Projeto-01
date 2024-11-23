@@ -5,18 +5,6 @@ from constants import DB_USUARIOS
 from menu import menu
 
 def login():
-    connect = sqlite3.connect(DB_USUARIOS)
-    cursor = connect.cursor()
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS USUARIOS (
-        ID INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT NOT NULL,
-        password TEXT NOT NULL               
-    )
-    """)
-    connect.commit()
-    connect.close()
-
     def verify_login():
         entry_user = username.get()
         entry_pass = password.get()
@@ -32,6 +20,22 @@ def login():
             menu()
         else:
             label1.configure(text="Usuário não encontrado")
+        connect.close()
+
+    try:
+        connect = sqlite3.connect(DB_USUARIOS)
+    except FileNotFoundError:
+        pass
+    else:
+        cursor = connect.cursor()
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS USUARIOS (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL,
+            password TEXT NOT NULL               
+        )
+        """)
+        connect.commit()
         connect.close()
 
     app = create_app("Login", "350x175")

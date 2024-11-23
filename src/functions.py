@@ -1,5 +1,6 @@
 import customtkinter
 from tkinter import filedialog
+from constants import *
 def create_app(titulo, geometria):
     app = customtkinter.CTk()
     app.title(titulo)
@@ -41,3 +42,4 @@ def select_file(entry_file):
     if file_path:
         entry_file.delete(0, "end")
         entry_file.insert(0, file_path)
+

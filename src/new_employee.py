@@ -1,6 +1,10 @@
 import pandas
+from tkinter import messagebox
 from functions import *
 from constants import EDUCATION, STATUS, MASC_FEM, CONTRACT, POSITION, SCRIPT_FOLDER_1, COLUMN_LIST0
+
+
+
 
 def app_new_employee():
     def button_new_employee():
@@ -46,6 +50,7 @@ def app_new_employee():
         phone.delete(0, "end")
         email.delete(0, "end")
 
+        messagebox.showinfo("Informação cadastrada", "Informação cadastrada")
     # App.
     app = create_app("Adicionar funcionario", "1000x750")
     app.grid_columnconfigure(0, weight=1)
