@@ -3,22 +3,29 @@ import logging
 from login import login
 from constants import *
 
+log_file01 = logging.FileHandler(filename='checking_files.log', mode='a', encoding='utf-8')
+log_file01.setLevel(logging.DEBUG)
+log_file01.setFormatter(logging.Formatter('%(name)s - %(levelname)s - %(message)s'))
+
+log_check = logging.getLogger("[VERIFICANDO]")
+log_check.addHandler(log_file01)
+log_check.setLevel(logging.DEBUG)
 
 def checking_files():
-    logging.debug("[VERIFICANDO ARQUIVOS/DIRETÓRIOS NECESSARIOS]")
+    log_check.debug("[VERIFICANDO ARQUIVOS/DIRETÓRIOS NECESSARIOS]")
     for cam in FOLDER_LIST:
         cam.mkdir(exist_ok=True)
-        logging.info(f"[DIRETÓRIO]:{cam}")
+        log_check.info(f"[DIRETÓRIO]:{cam}")
         if cam.exists():
-            logging.info(f"[STATUS]: [OK]")
+            log_check.info(f"[STATUS]: [OK]")
         else:
-            logging.error(f"[STATUS]: [NÃO ENCONTRADO]")
+            log_check.error(f"[STATUS]: [NÃO ENCONTRADO]")
     DB_USUARIOS.touch(exist_ok=True)
-    logging.debug(f"[ARQUIVO]:{DB_USUARIOS}")
+    log_check.info(f"[ARQUIVO]:{DB_USUARIOS}")
     if DB_USUARIOS.exists():
-        logging.info(f"[STATUS]:[OK]")
+        log_check.info(f"[STATUS]:[OK]")
     else:
-        logging.error(f"[STATUS]:[NÃO ENCONTRADO]")
+        log_check.error(f"[STATUS]:[NÃO ENCONTRADO]")
 
 # Main.
 def main():
