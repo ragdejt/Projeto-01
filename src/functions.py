@@ -1,3 +1,4 @@
+import pandas
 import customtkinter
 from tkinter import filedialog
 from constants import *
@@ -33,6 +34,7 @@ def create_menu_opt(frame, valores, coluna, linha, expand):
     menu = customtkinter.CTkOptionMenu(master=frame, values=valores)
     menu.grid(column=coluna, row=linha, sticky=expand, padx=5, pady=5)
     return menu
+
 
 def select_file(entry_file):
     file_path = filedialog.askopenfilename(

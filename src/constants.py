@@ -37,7 +37,7 @@ DB_USUARIOS = SCRIPT_PATH / ("USUARIOS.db")
 #
 SPREADSHEET_NAME = "%Y%m%d%H%M%S"
 #
-COLUMN_LIST0 = [
+COLUMN_LIST_EMPLOYEE = [
     "NOME",
     "DATA/NASCIMENTO",
     "SEXO",
@@ -69,6 +69,22 @@ COLUMN_LIST_APPOINTMENT = [
     "DATA/AGENDAMENTO"
 ]
 
+COLUMN_LIST_SUPPLIER = [
+    "NOME",
+    "CNPJ",
+    "EMAIL",
+    "TELEFONE",
+    "CATEGORIA",
+    "ENDEREÇO",
+    "ESTADO",
+    "CIDADE",
+    "BANCO",
+    "AGENCIA",
+    "CONTA",
+    "PIX",
+    "RESPONSAVEL/CADASTRO"
+]
+
 MASC_FEM = ["Masculino", "Feminino"]
 
 POSITION = [
@@ -95,4 +111,50 @@ EDUCATION = [
     "Ensino Superior Incompleto"
 ]
 
+STATES = [
+    "Acre (AC)",
+    "Alagoas (AL)",
+    "Amapá (AP)",
+    "Amazonas (AM)",
+    "Bahia (BA)",
+    "Ceará (CE)",
+    "Distrito Federal (DF)",
+    "Espírito Santo (ES)",
+    "Goiás (GO)",
+    "Maranhão (MA)",
+    "Mato Grosso (MT)",
+    "Mato Grosso do Sul (MS)",
+    "Minas Gerais (MG)",
+    "Pará (PA)",
+    "Paraíba (PB)",
+    "Paraná (PR)",
+    "Pernambuco (PE)",
+    "Piauí (PI)",
+    "Rio de Janeiro (RJ)",
+    "Rio Grande do Norte (RN)",
+    "Rio Grande do Sul (RS)",
+    "Rondônia (RO)",
+    "Roraima (RR)",
+    "Santa Catarina (SC)",
+    "São Paulo (SP)",
+    "Sergipe (SE)",
+    "Tocantins (TO)"
+]
 
+BANKS = [
+    "Banco do Brasil (BB) - 001",
+    "Caixa Econômica Federal (Caixa) - 104",
+    "Itaú Unibanco - 341",
+    "Bradesco - 237",
+    "Santander Brasil - 033",
+    "Nubank - 260",
+    "Banco Inter - 077",
+    "BTG Pactual - 208",
+    "C6 Bank - 336",
+    "Banco Safra - 422"
+]
+
+SUPPLIER_CATEGORY = [
+    "Prestador de serviço",
+    "Fornecedor de produto"
+]

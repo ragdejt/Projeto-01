@@ -1,7 +1,8 @@
 import tkinter
 from functions import *
-from new_employee import app_new_employee
-from new_appointment import app_new_appointment
+from new_employee import new_employee
+from new_appointment import new_appointment
+from new_supplier import new_supplier
 def menu():
     # App.
     app = create_app("MENU PRINCIPAL", "1080x960")
@@ -43,11 +44,11 @@ def menu():
     edit_menu.add_command(label="Financeiro", command=None)
     # Adicionar.
     menu_principal.add_cascade(label="Adicionar", menu=add_menu)
-    add_menu.add_command(label="Funcionario", command=app_new_employee)
-    add_menu.add_command(label="Fornecedor", command=None)
+    add_menu.add_command(label="Funcionario", command=new_employee)
+    add_menu.add_command(label="Fornecedor", command=new_supplier)
     add_menu.add_command(label="Cliente", command=None)
     add_menu.add_command(label="Estoque", command=None)
-    add_menu.add_command(label="Agendamento", command=app_new_appointment)
+    add_menu.add_command(label="Agendamento", command=new_appointment)
     add_menu.add_command(label="Separação", command=None)
     add_menu.add_command(label="Expedição", command=None)
     add_menu.add_command(label="Compra", command=None)

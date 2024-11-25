@@ -1,17 +1,10 @@
-import logging
 import sqlite3
 import customtkinter
 from functions import *
+from log_record import LOG_LOGIN
 from constants import DB_USUARIOS
 from menu import menu
 
-log_file02 = logging.FileHandler(filename="login.log", mode="a", encoding="utf-8")
-log_file02.setLevel(logging.DEBUG)
-log_file02.setFormatter(logging.Formatter('%(name)s - %(levelname)s - %(message)s'))
-
-log_login = logging.getLogger("[LOGIN]")
-log_login.addHandler(log_file02)
-log_login.setLevel(logging.DEBUG)
 
 def login():
     def verify_login():
@@ -24,30 +17,26 @@ def login():
         cursor.execute(query, (entry_user, entry_pass))
         result = cursor.fetchone()
         if result:
-            log_login.info(f"[USUARIO]: [{entry_user}] - [ENTROU]")
+            LOG_LOGIN.info(f"[TENTATIVA DE LOGIN] - [USUARIO]: [{entry_user}] - [ENCONTRADO] - [BANCO DE DADOS]: {DB_USUARIOS}")
             label1.configure(text="Usuário encontrado")
             app.destroy()
             menu()
         else:
-            log_login.warning(f"[USUARIO]: [{entry_user}] - [NÃO ENCONTRADO]")
+            LOG_LOGIN.warning(f"[TENTATIVA DE LOGIN] - [USUARIO]: [{entry_user}] - [NÃO ENCONTRADO] - [BANCO DE DADOS]: {DB_USUARIOS}")
             label1.configure(text="Usuário não encontrado")
         connect.close()
 
-    try:
-        connect = sqlite3.connect(DB_USUARIOS)
-    except FileNotFoundError:
-        pass
-    else:
-        cursor = connect.cursor()
-        cursor.execute("""
-        CREATE TABLE IF NOT EXISTS USUARIOS (
-            ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            password TEXT NOT NULL               
-        )
-        """)
-        connect.commit()
-        connect.close()
+    connect = sqlite3.connect(DB_USUARIOS)
+    cursor = connect.cursor()
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS USUARIOS (
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL,
+        password TEXT NOT NULL               
+    )
+    """)
+    connect.commit()
+    connect.close()
 
     app = create_app("Login", "350x175")
     app.grid_columnconfigure(0, weight=1)

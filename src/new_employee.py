@@ -1,12 +1,10 @@
-import pandas
+import shutil
 from tkinter import messagebox
 from functions import *
-from constants import EDUCATION, STATUS, MASC_FEM, CONTRACT, POSITION, SCRIPT_FOLDER_1, COLUMN_LIST0
+from constants import *
+from log_record import LOG_EMPLOYEE
 
-
-
-
-def app_new_employee():
+def new_employee():
     def button_new_employee():
         new_data = {
             "NOME":[name.get()],
@@ -31,11 +29,30 @@ def app_new_employee():
 
         employee_path = SCRIPT_FOLDER_1 / (new_data['NOME'][0])
         employee_path.mkdir(exist_ok=True)
+        
+        with pandas.ExcelWriter(path=f"{employee_path}.xlsx", engine="xlsxwriter") as writer:
+            pandas.DataFrame(columns=COLUMN_LIST_EMPLOYEE, data=new_data).to_excel(writer, sheet_name=new_data["NOME"][0], index=False)
 
 
-        with pandas.ExcelWriter(path=employee_path / (f"{new_data['NOME'][0]}.xlsx"), engine="xlsxwriter") as writer:
-            pandas.DataFrame(columns=COLUMN_LIST0, data=new_data).to_excel(writer, sheet_name=new_data["NOME"][0], index=False)
+        shutil.copy(admission_path.get(), employee_path / ("Exame admissional.pdf"))
+        shutil.copy(ctps_path.get(), employee_path / ("Carteira de trabalho profissional.pdf"))
+        shutil.copy(rg_path.get(), employee_path / ("Registro Geral.pdf"))
+        shutil.copy(cpf_path.get(), employee_path / ("Cadastro de pessoa fisica.pdf"))
+        shutil.copy(contract_path.get(), employee_path / ("Contrato.pdf"))
+        shutil.copy(education_path.get(), employee_path / ("Comprovante de escolaridade.pdf"))
+        shutil.copy(address_path.get(), employee_path / ("Comprovante de endereço.pdf"))
+        
+        LOG_EMPLOYEE.debug(f"[USUARIO]: {new_data['NOME'][0]} - [CADASTRADO] - [✓]")
+        LOG_EMPLOYEE.info(f"[ARQUIVO]: {admission_path.get()} - [COPIADO] - [✓]")
+        LOG_EMPLOYEE.info(f"[ARQUIVO]: {ctps_path.get()} - [COPIADO] - [✓]")
+        LOG_EMPLOYEE.info(f"[ARQUIVO]: {rg_path.get()} - [COPIADO] - [✓]")
+        LOG_EMPLOYEE.info(f"[ARQUIVO]: {cpf_path.get()} - [COPIADO] - [✓]")
+        LOG_EMPLOYEE.info(f"[ARQUIVO]: {contract_path.get()} - [COPIADO] - [✓]")
+        LOG_EMPLOYEE.info(f"[ARQUIVO]: {education_path.get()} - [COPIADO] - [✓]")
+        LOG_EMPLOYEE.info(f"[ARQUIVO]: {address_path.get()} - [COPIADO] - [✓]")
 
+        messagebox.showinfo("Informação cadastrada", "Informação cadastrada")
+        
         name.delete(0, "end")
         birth.delete(0, "end")
         admission_date.delete(0, "end")
@@ -50,7 +67,6 @@ def app_new_employee():
         phone.delete(0, "end")
         email.delete(0, "end")
 
-        messagebox.showinfo("Informação cadastrada", "Informação cadastrada")
     # App.
     app = create_app("Adicionar funcionario", "1000x750")
     app.grid_columnconfigure(0, weight=1)

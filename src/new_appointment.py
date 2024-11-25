@@ -1,11 +1,10 @@
 import time
-import pandas
 from tkinter import messagebox
-from constants import SCRIPT_FOLDER_2, COLUMN_LIST_APPOINTMENT, SPREADSHEET_NAME
-from functions import create_app, create_button, create_entry, create_frame
+from constants import *
+from functions import *
+from log_record import LOG_APPOINTMENT
 
-
-def app_new_appointment():
+def new_appointment():
     def button_new_appointment():
         new_data = {
             "CLIENTE":[cliente.get()],
@@ -19,9 +18,17 @@ def app_new_appointment():
             "DATA/AGENDAMENTO":[data_agendamento.get()],
         }
         spreadsheet_name = time.strftime(SPREADSHEET_NAME)
-        with pandas.ExcelWriter(path=SCRIPT_FOLDER_2 / (spreadsheet_name + ".xlsx"), engine="xlsxwriter") as writer:
-            pandas.DataFrame(columns=COLUMN_LIST_APPOINTMENT, data=new_data).to_excel(writer, sheet_name=spreadsheet_name, index=False)
+
+        save_file(
+            spreadsheetname=spreadsheet_name,
+            newdata=new_data,
+            coluna=COLUMN_LIST_APPOINTMENT
+        )        
+
+        LOG_APPOINTMENT.debug(f"[AGENDAMENTO]: {spreadsheet_name} - [CADASTRADO] - [✓]")
         
+        messagebox.showinfo("Informação cadastrada", "Informação cadastrada")
+
         cliente.delete(0, "end")
         produto.delete(0, "end")
         material.delete(0, "end")
@@ -32,7 +39,6 @@ def app_new_appointment():
         resp_agendamento.delete(0, "end")
         data_agendamento.delete(0, "end")
 
-        messagebox.showinfo("Informação cadastrada", "Informação cadastrada")
 
     app = create_app("Novo agendamento","480x400")
     app.grid_columnconfigure(0, weight=1)
