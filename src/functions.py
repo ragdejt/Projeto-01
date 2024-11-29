@@ -1,4 +1,5 @@
-import pandas
+import os
+import subprocess
 import customtkinter
 from tkinter import filedialog
 from constants import *
@@ -45,3 +46,6 @@ def select_file(entry_file):
         entry_file.delete(0, "end")
         entry_file.insert(0, file_path)
 
+def open_folder(folder_path):
+    if os.path.exists(folder_path) and os.path.isdir(folder_path):
+        subprocess.Popen(f'explorer "{folder_path}"', shell=True)

@@ -19,12 +19,6 @@ def new_appointment():
         }
         spreadsheet_name = time.strftime(SPREADSHEET_NAME)
 
-        save_file(
-            spreadsheetname=spreadsheet_name,
-            newdata=new_data,
-            coluna=COLUMN_LIST_APPOINTMENT
-        )        
-
         LOG_APPOINTMENT.debug(f"[AGENDAMENTO]: {spreadsheet_name} - [CADASTRADO] - [✓]")
         
         messagebox.showinfo("Informação cadastrada", "Informação cadastrada")

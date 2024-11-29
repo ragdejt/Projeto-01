@@ -1,3 +1,4 @@
+import pandas
 import shutil
 from tkinter import messagebox
 from functions import *

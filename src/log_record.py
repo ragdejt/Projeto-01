@@ -8,7 +8,7 @@ def create_log(file_name, log_name):
         
     )
     log_file.setLevel(logging.DEBUG)
-    log_file.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt="[%d/%m/%Y] - [%H:%M:%S]"))
+    log_file.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(message)s - %(levelname)s', datefmt="[%d/%m/%Y] - [%H:%M:%S]"))
     log = logging.getLogger(log_name)
     log.addHandler(log_file)
     log.setLevel(logging.DEBUG)
