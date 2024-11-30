@@ -1,4 +1,5 @@
 import logging
+from constants import *
 # Registro de checagem de arquivos.
 def create_log(file_name, log_name):
     log_file = logging.FileHandler(
@@ -14,14 +15,15 @@ def create_log(file_name, log_name):
     log.setLevel(logging.DEBUG)
     return log
 
-LOG_CHECK = create_log("checkingfiles.log", "[CHECKING]")
-LOG_LOGIN = create_log("login.log", "[LOGIN]")
-LOG_EMPLOYEE = create_log("employees.log", "[EMPLOYEE]")
-LOG_CUSTOMER = create_log("customers.log", "[CUSTOMER]")
-LOG_SUPPLIER = create_log("suppliers.log", "[SUPPLIER]")
-LOG_ACQUISITION = create_log("procurement.log", "[PROCUREMENT]")
-LOG_SALE = create_log("sales.log", "[SALE]")
-LOG_REPORT = create_log("reports.log", "[REPORT]")
-LOG_APPOINTMENT = create_log("appointments.log", "[APPOINTMENT]")
+LOG_CHECK = create_log(REGISTROS / "checkingfiles.log", "[CHECKING]")
+LOG_LOGIN = create_log(REGISTROS / "login.log", "[LOGIN]")
+LOG_EMPLOYEE = create_log(REGISTROS / "employees.log", "[EMPLOYEE]")
+LOG_CUSTOMER = create_log(REGISTROS / "customers.log", "[CUSTOMER]")
+LOG_SUPPLIER = create_log(REGISTROS / "suppliers.log", "[SUPPLIER]")
+LOG_ACQUISITION = create_log(REGISTROS / "procurement.log", "[PROCUREMENT]")
+LOG_SALE = create_log(REGISTROS / "sales.log", "[SALE]")
+LOG_REPORT = create_log(REGISTROS / "reports.log", "[REPORT]")
+LOG_APPOINTMENT = create_log(REGISTROS / "appointments.log", "[APPOINTMENT]")
+
 
 

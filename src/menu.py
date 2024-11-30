@@ -68,30 +68,6 @@ def menu(entry_user):
     rem_menu.add_command(label="Compra", command=None)
     rem_menu.add_command(label="Venda", command=None)
     rem_menu.add_command(label="Financeiro", command=None)
-    # Relatórios.
-    menu_principal.add_cascade(label="Relatório", menu=report_menu)
-    report_menu.add_command(label="Funcionario", command=None)
-    report_menu.add_command(label="Fornecedor", command=None)
-    report_menu.add_command(label="Cliente", command=None)
-    report_menu.add_command(label="Estoque", command=None)
-    report_menu.add_command(label="Agendamento", command=None)
-    report_menu.add_command(label="Separação", command=None)
-    report_menu.add_command(label="Expedição", command=None)
-    report_menu.add_command(label="Compra", command=None)
-    report_menu.add_command(label="Venda", command=None)
-    report_menu.add_command(label="Financeiro", command=None)
-    # Registros.
-    menu_principal.add_cascade(label="Registro", menu=log_menu)
-    log_menu.add_command(label="Funcionario", command=None)
-    log_menu.add_command(label="Fornecedor", command=None)
-    log_menu.add_command(label="Cliente", command=None)
-    log_menu.add_command(label="Estoque", command=None)
-    log_menu.add_command(label="Agendamento", command=None)
-    log_menu.add_command(label="Separação", command=None)
-    log_menu.add_command(label="Expedição", command=None)
-    log_menu.add_command(label="Compra", command=None)
-    log_menu.add_command(label="Venda", command=None)
-    log_menu.add_command(label="Financeiro", command=None)
     # Ajuda.
     menu_principal.add_cascade(label="Ajuda", menu=help_menu)
     help_menu.add
@@ -140,20 +116,20 @@ def menu(entry_user):
     frame21 = customtkinter.CTkFrame(frame2)
     frame21.grid(sticky="nsew", padx=5, pady=5, column=0, row=0)
     frame21.grid_columnconfigure(0, weight=1)
-    label211 = customtkinter.CTkLabel(frame21, text=f"Usuario: {entry_user}")
-    label211.grid(sticky="", padx=5, pady=5, column=0, row=0)
+    label211 = customtkinter.CTkLabel(frame21, text=f"USUARIO: {entry_user}")
+    label211.grid(sticky="nsew", padx=5, pady=5, column=0, row=0)
 
     frame2_2 = customtkinter.CTkFrame(frame2)
     frame2_2.grid(sticky="nsew", padx=5, pady=5, column=0, row=1)
     frame2_2.grid_columnconfigure(0, weight=1)
 
-    button0 = customtkinter.CTkButton(frame2_2, text="Agendamento",command=lambda: open_folder(AGENDAMENTOS))
+    button0 = customtkinter.CTkButton(frame2_2, text="Agendamentos",command=lambda: open_folder(AGENDAMENTOS))
     button0.grid(sticky="nsew", padx=10, pady=10, column=0, row=0)
 
-    button1 = customtkinter.CTkButton(frame2_2, text="Compra", command=lambda: open_folder(COMPRAS))
+    button1 = customtkinter.CTkButton(frame2_2, text="Compras", command=lambda: open_folder(COMPRAS))
     button1.grid(sticky="nsew", padx=10, pady=10, column=0, row=1)
 
-    button2 = customtkinter.CTkButton(frame2_2, text="Cliente", command=lambda: open_folder(CLIENTES))
+    button2 = customtkinter.CTkButton(frame2_2, text="Clientes", command=lambda: open_folder(CLIENTES))
     button2.grid(sticky="nsew", padx=10, pady=10, column=0, row=2)
 
     button3 = customtkinter.CTkButton(frame2_2, text="Financeiro", command=lambda: open_folder(FINANCEIRO))
@@ -168,13 +144,13 @@ def menu(entry_user):
     button6 = customtkinter.CTkButton(frame2_2, text="Estoque", command=lambda: open_folder(ESTOQUE))
     button6.grid(sticky="nsew", padx=10, pady=10, column=0, row=6)
 
-    button7 = customtkinter.CTkButton(frame2_2, text="Registro", command=lambda: open_folder(REGISTROS))
+    button7 = customtkinter.CTkButton(frame2_2, text="Registros", command=lambda: open_folder(REGISTROS))
     button7.grid(sticky="nsew", padx=10, pady=10, column=0, row=7)
 
-    button8 = customtkinter.CTkButton(frame2_2, text="Recebimento", command=lambda: open_folder(RECEBIMENTOS))
+    button8 = customtkinter.CTkButton(frame2_2, text="Recebimentos", command=lambda: open_folder(RECEBIMENTOS))
     button8.grid(sticky="nsew", padx=10, pady=10, column=0, row=8)
 
-    button9 = customtkinter.CTkButton(frame2_2, text="Relatorio", command=lambda: open_folder(RELATORIOS))
+    button9 = customtkinter.CTkButton(frame2_2, text="Relatorios", command=lambda: open_folder(RELATORIOS))
     button9.grid(sticky="nsew", padx=10, pady=10, column=0, row=9)
 
     button10 = customtkinter.CTkButton(frame2_2, text="Separação", command=lambda: open_folder(SEPARACAO))
@@ -183,7 +159,7 @@ def menu(entry_user):
     button11 = customtkinter.CTkButton(frame2_2, text="Expedição", command=lambda: open_folder(EXPEDICAO))
     button11.grid(sticky="nsew", padx=10, pady=10, column=0, row=11)
 
-    button12 = customtkinter.CTkButton(frame2_2, text="Venda", command=lambda: open_folder(VENDAS))
+    button12 = customtkinter.CTkButton(frame2_2, text="Vendas", command=lambda: open_folder(VENDAS))
     button12.grid(sticky="nsew", padx=10, pady=10, column=0, row=12)
 
 
