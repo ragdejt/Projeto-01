@@ -1,6 +1,7 @@
+import pandas
 import shutil
 from log_record import LOG_SUPPLIER
-from functions import *
+from app_functions import *
 from constants import *
 from tkinter import messagebox
 
@@ -22,7 +23,7 @@ def new_supplier():
             "RESPONSAVEL/CADASTRO":[user.get()]
         }
 
-        supplier_path = SCRIPT_FOLDER_2 / (razao_social.get())
+        supplier_path = FORNECEDORES / (razao_social.get())
         supplier_path.mkdir(exist_ok=True)
 
         with pandas.ExcelWriter(path=f"{supplier_path}.xlsx" , engine="xlsxwriter") as writer:

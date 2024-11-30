@@ -1,6 +1,6 @@
 import sqlite3
 import customtkinter
-from functions import *
+from app_functions import *
 from log_record import LOG_LOGIN
 from constants import DB_USUARIOS
 from menu import menu
@@ -20,7 +20,7 @@ def login():
             LOG_LOGIN.info(f"[TENTATIVA DE LOGIN] - [USUARIO]: [{entry_user}] - [ENCONTRADO] - [BANCO DE DADOS]: {DB_USUARIOS}")
             label1.configure(text="Usuário encontrado")
             app.destroy()
-            menu()
+            menu(entry_user)
         else:
             LOG_LOGIN.warning(f"[TENTATIVA DE LOGIN] - [USUARIO]: [{entry_user}] - [NÃO ENCONTRADO] - [BANCO DE DADOS]: {DB_USUARIOS}")
             label1.configure(text="Usuário não encontrado")

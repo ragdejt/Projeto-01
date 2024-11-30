@@ -1,7 +1,7 @@
 import pandas
 import shutil
 from tkinter import messagebox
-from functions import *
+from app_functions import *
 from constants import *
 from log_record import LOG_EMPLOYEE
 
@@ -28,7 +28,7 @@ def new_employee():
             "EMAIL":[email.get()]
         }
 
-        employee_path = SCRIPT_FOLDER_1 / (new_data['NOME'][0])
+        employee_path = FUNCIONARIOS / (new_data['NOME'][0])
         employee_path.mkdir(exist_ok=True)
         
         with pandas.ExcelWriter(path=f"{employee_path}.xlsx", engine="xlsxwriter") as writer:

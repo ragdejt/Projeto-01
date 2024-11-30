@@ -1,7 +1,8 @@
 import time
+import pandas
 from tkinter import messagebox
 from constants import *
-from functions import *
+from app_functions import *
 from log_record import LOG_APPOINTMENT
 
 def new_appointment():
@@ -19,8 +20,10 @@ def new_appointment():
         }
         spreadsheet_name = time.strftime(SPREADSHEET_NAME)
 
-        LOG_APPOINTMENT.debug(f"[AGENDAMENTO]: {spreadsheet_name} - [CADASTRADO] - [✓]")
-        
+        with pandas.ExcelWriter(path=AGENDAMENTOS / f"{spreadsheet_name}.xlsx", engine="xlsxwriter") as writer:
+            pandas.DataFrame(columns=COLUMN_LIST_APPOINTMENT, data=new_data).to_excel(writer, sheet_name=new_data["CLIENTE"][0], index=False)
+
+        LOG_APPOINTMENT.debug(f"[AGENDAMENTO]: {spreadsheet_name} - [RESPONSAVEL/AGENDAMENTO]: {resp_agendamento.get()} - [CADASTRADO] - [✓]")
         messagebox.showinfo("Informação cadastrada", "Informação cadastrada")
 
         cliente.delete(0, "end")
