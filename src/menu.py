@@ -121,14 +121,15 @@ def menu(entry_user):
     frame21.grid_columnconfigure(0, weight=1)
 
     
-    label211 = customtkinter.CTkLabel(frame21, text=f"{entry_user}", font=("Consolas", 20, "bold"))
+    label211 = customtkinter.CTkLabel(frame21, text=f"{entry_user}", font=("Calibri", 20, "bold"))
     label211.grid(sticky="nsew", padx=5, pady=5, column=0, row=0)
 
     frame2_2 = customtkinter.CTkFrame(frame2)
     frame2_2.grid(sticky="nsew", padx=5, pady=5, column=0, row=1)
     frame2_2.grid_columnconfigure(0, weight=1)
 
-    button0 = customtkinter.CTkButton(frame2_2, text="Agendamentos",command=lambda: open_folder(AGENDAMENTOS))
+
+    button0 = customtkinter.CTkButton(frame2_2, text="Agendamentos", command=lambda: open_folder(AGENDAMENTOS))
     button0.grid(sticky="nsew", padx=10, pady=10, column=0, row=0)
 
     button1 = customtkinter.CTkButton(frame2_2, text="Compras", command=lambda: open_folder(COMPRAS))

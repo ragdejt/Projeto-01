@@ -17,22 +17,28 @@ def create_frame(master, coluna, linha, expand):
     return frame
 
 def create_entry(master, texto, coluna, linha, expand):
-    entry = customtkinter.CTkEntry(master=master, placeholder_text=texto)
+    entry = customtkinter.CTkEntry(master=master, placeholder_text=texto, font=("Courier New", 15))
     entry.grid(column=coluna, row=linha, sticky=expand, padx=5, pady=5)
     return entry
 
 def create_button(master, texto, coluna, linha, expand, comando):
-    button = customtkinter.CTkButton(master=master, text=texto, command=comando)
+    button = customtkinter.CTkButton(master=master, text=texto, font=("Calibri", 15), command=comando)
     button.grid(column=coluna, row=linha, sticky=expand, padx=5, pady=5)
     return button
 
+def button_folder(frame, texto, coluna, linha, comando):
+    button = customtkinter.CTkButton(master=frame, text=texto, font=("Courier New", 15), command=comando)
+    button.grid(sticky="nsew", padx=10, pady=10, column=coluna, row=linha)
+    return button
+
+
 def create_label(master, texto, coluna, linha, expand):
-    label = customtkinter.CTkLabel(master=master, text=texto)
+    label = customtkinter.CTkLabel(master=master, text=texto, font=("Courier New", 15))
     label.grid(column=coluna, row=linha, sticky=expand, padx=5, pady=5)
     return label
 
 def create_menu_opt(frame, valores, coluna, linha, expand):
-    menu = customtkinter.CTkOptionMenu(master=frame, values=valores)
+    menu = customtkinter.CTkOptionMenu(master=frame, values=valores, font=("Courier New", 15))
     menu.grid(column=coluna, row=linha, sticky=expand, padx=5, pady=5)
     return menu
 

@@ -1,6 +1,6 @@
-import pandas
-import shutil
 import sqlite3
+import shutil
+import pandas
 from tkinter import messagebox
 from app_functions import *
 from constants import *
@@ -59,8 +59,10 @@ def add_employee(employee: Funcionario):
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (employee.nome, employee.nascimento, employee.sexo, employee.cargo, employee.admissao, employee.salario, employee.ctps, employee.rg, employee.cpf, employee.estado_civil, employee.contrato, employee.escolaridade, employee.endereço, employee.cidade, employee.estado, employee.telefone, employee.email))
         conectar.commit()
     except sqlite3.IntegrityError:
-        pass
-    conectar.close()
+        LOG_EMPLOYEE.debug(f"[FUNCIONARIO]: {employee.nome} - [ENCONTRADO] - [BANCO DE DADOS]: {DB_FUNCIONARIOS}")
+        LOG_EMPLOYEE.info()
+    else:
+        conectar.close()
 
 
 def new_employee():
@@ -220,7 +222,5 @@ def new_employee():
     address_path = create_entry(frame02, "Arquivo: Comprovante de endereço", 0, 12, "nsew")
     create_button(frame02, "Selecionar arquivo", 0, 13, "nsew", lambda: select_file(address_path))
     # Terceiro frame.
-    
-
     create_button(app, "Cadastrar", 0, 1, "nsew", button_new_employee)
     app.mainloop()

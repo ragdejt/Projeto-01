@@ -45,7 +45,7 @@ def login():
     frame0.grid_columnconfigure(0, weight=1)
     label1 = create_label(frame0, "Login", 0, 0, "nsew")
     username = create_entry(frame0, "Usuario", 0, 1, "nsew")
-    password = customtkinter.CTkEntry(master=frame0, placeholder_text="Senha", show="*")
+    password = customtkinter.CTkEntry(master=frame0, placeholder_text="Senha", show="*", font=("Courier New", 15))
     password.grid(column=0, row=2, sticky="nsew", padx=5, pady=5)
     create_button(frame0, "Entrar", 0, 3, "nsew", verify_login)
     app.mainloop()
