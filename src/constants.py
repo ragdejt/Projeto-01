@@ -36,6 +36,7 @@ FOLDER_LIST = [
 
 # Data bases.
 DB_USUARIOS = SCRIPT_PATH / ("USUARIOS.db")
+DB_FUNCIONARIOS = SCRIPT_PATH / ("FUNCIONARIOS.db")
 #
 SPREADSHEET_NAME = "%Y%m%d%H%M%S"
 #
@@ -160,3 +161,4 @@ SUPPLIER_CATEGORY = [
     "Prestador de serviço",
     "Fornecedor de produto"
 ]
+

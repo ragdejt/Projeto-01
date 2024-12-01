@@ -1,9 +1,67 @@
 import pandas
 import shutil
+import sqlite3
 from tkinter import messagebox
 from app_functions import *
 from constants import *
 from log_record import LOG_EMPLOYEE
+from dataclasses import dataclass
+
+@dataclass
+class Funcionario:
+    nome:str
+    nascimento:str
+    sexo:str
+    cargo:str
+    admissao:str
+    salario:float
+    ctps:int
+    rg:int
+    cpf:int
+    estado_civil:str
+    contrato:str
+    escolaridade:str
+    endereço:str
+    cidade:str
+    estado:str
+    telefone:str
+    email:str
+
+def add_employee(employee: Funcionario):
+    conectar = sqlite3.connect(DB_FUNCIONARIOS)
+    cursor = conectar.cursor()
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS FUNCIONARIOS (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL UNIQUE,
+        nascimento TEXT NOT NULL,
+        sexo TEXT NOT NULL,
+        cargo TEXT NOT NULL,
+        admissao TEXT NOT NULL,
+        salario TEXT NOT NULL,
+        ctps TEXT NOT NULL,
+        rg TEXT NOT NULL,
+        cpf TEXT NOT NULL,
+        estado_civil TEXT NOT NULL,
+        contrato TEXT NOT NULL,
+        escolaridade TEXT NOT NULL,
+        endereço TEXT NOT NULL,
+        cidade TEXT NOT NULL,
+        estado TEXT NOT NULL,
+        telefone TEXT NOT NULL,
+        email TEXT NOT NULL
+    )
+    """)
+    conectar.commit()
+    try:
+        cursor.execute("""
+        INSERT INTO FUNCIONARIOS (nome, nascimento, sexo, cargo, admissao, salario, ctps, rg, cpf, estado_civil, contrato, escolaridade, endereço, cidade, estado, telefone, email)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (employee.nome, employee.nascimento, employee.sexo, employee.cargo, employee.admissao, employee.salario, employee.ctps, employee.rg, employee.cpf, employee.estado_civil, employee.contrato, employee.escolaridade, employee.endereço, employee.cidade, employee.estado, employee.telefone, employee.email))
+        conectar.commit()
+    except sqlite3.IntegrityError:
+        pass
+    conectar.close()
+
 
 def new_employee():
     def button_new_employee():
@@ -43,7 +101,7 @@ def new_employee():
         shutil.copy(education_path.get(), employee_path / ("Comprovante de escolaridade.pdf"))
         shutil.copy(address_path.get(), employee_path / ("Comprovante de endereço.pdf"))
         
-        LOG_EMPLOYEE.debug(f"[USUARIO]: {new_data['NOME'][0]} - [CADASTRADO] - [✓]")
+        LOG_EMPLOYEE.debug(f"[FUNCIONARIO]: {new_data['NOME'][0]} - [CADASTRADO] - [✓]")
         LOG_EMPLOYEE.info(f"[ARQUIVO]: {admission_path.get()} - [COPIADO] - [✓]")
         LOG_EMPLOYEE.info(f"[ARQUIVO]: {ctps_path.get()} - [COPIADO] - [✓]")
         LOG_EMPLOYEE.info(f"[ARQUIVO]: {rg_path.get()} - [COPIADO] - [✓]")
@@ -67,6 +125,30 @@ def new_employee():
         state.delete(0, "end")
         phone.delete(0, "end")
         email.delete(0, "end")
+
+        funcionario = Funcionario(
+            nome=new_data["NOME"][0],
+            nascimento=new_data["DATA/NASCIMENTO"][0],
+            sexo=new_data["SEXO"][0],
+            cargo=new_data["CARGO"][0],
+            admissao=new_data["DATA DE ADMISSÃO"][0],
+            salario=new_data["SALARIO"][0],
+            ctps=new_data["CTPS"][0],
+            rg=new_data["RG"][0],
+            cpf=new_data["CPF"][0],
+            estado_civil=new_data["ESTADO/CIVIL"][0],
+            contrato=new_data["CONTRATO"][0],
+            escolaridade=new_data["ESCOLARIDADE"][0],
+            endereço=new_data["ENDEREÇO"][0],
+            cidade=new_data["CIDADE"][0],
+            estado=new_data["ESTADO"][0],
+            telefone=new_data["TELEFONE/CELULAR"][0],
+            email=new_data["EMAIL"][0]
+        )
+
+        add_employee(funcionario)
+
+        LOG_EMPLOYEE.debug(f"[FUNCIONARIO]: {funcionario.nome} - [CADASTRADO] - [BANCO DE DADOS]: {DB_FUNCIONARIOS} - [✓]")
 
     # App.
     app = create_app("Adicionar funcionario", "1000x750")

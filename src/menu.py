@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import ttk
 from app_functions import *
 from new_employee import new_employee
 from new_appointment import new_appointment
@@ -17,8 +18,6 @@ def menu(entry_user):
     edit_menu = tkinter.Menu(menu_principal, tearoff=0)
     add_menu = tkinter.Menu(menu_principal, tearoff=0)
     rem_menu = tkinter.Menu(menu_principal, tearoff=0)
-    report_menu = tkinter.Menu(menu_principal, tearoff=0)
-    log_menu = tkinter.Menu(menu_principal, tearoff=0)
     help_menu = tkinter.Menu(menu_principal, tearoff=0)
     # Abrir.
     menu_principal.add_cascade(label="Abrir", menu=open_menu)
@@ -105,8 +104,12 @@ def menu(entry_user):
     button_report.grid(sticky="nsew", padx=10, pady=10, column=2, row=0)
 
 
-    frame12 = customtkinter.CTkFrame(frame1)
+    frame12 = customtkinter.CTkTabview(frame1)
     frame12.grid(sticky="nsew", padx=5, pady=5, column=0, row=1)
+    frame12.add("Pedidos Pendentes")
+    frame12.add("Pedidos Separados")
+
+    label121 = customtkinter.CTkLabel(frame12.tab("Pedidos Pendentes"), text="")
 
     #
     frame2 = customtkinter.CTkFrame(app)
@@ -116,7 +119,9 @@ def menu(entry_user):
     frame21 = customtkinter.CTkFrame(frame2)
     frame21.grid(sticky="nsew", padx=5, pady=5, column=0, row=0)
     frame21.grid_columnconfigure(0, weight=1)
-    label211 = customtkinter.CTkLabel(frame21, text=f"USUARIO: {entry_user}")
+
+    
+    label211 = customtkinter.CTkLabel(frame21, text=f"{entry_user}", font=("Consolas", 20, "bold"))
     label211.grid(sticky="nsew", padx=5, pady=5, column=0, row=0)
 
     frame2_2 = customtkinter.CTkFrame(frame2)
