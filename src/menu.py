@@ -14,23 +14,10 @@ def menu(entry_user):
     # Menu principal.
     menu_bar = tkinter.Menu(app)
     menu_principal = tkinter.Menu(menu_bar, tearoff=0)
-    open_menu = tkinter.Menu(menu_principal, tearoff=0)
     edit_menu = tkinter.Menu(menu_principal, tearoff=0)
     add_menu = tkinter.Menu(menu_principal, tearoff=0)
     rem_menu = tkinter.Menu(menu_principal, tearoff=0)
     help_menu = tkinter.Menu(menu_principal, tearoff=0)
-    # Abrir.
-    menu_principal.add_cascade(label="Abrir", menu=open_menu)
-    open_menu.add_command(label="Funcionario", command=None)
-    open_menu.add_command(label="Fornecedor", command=None)
-    open_menu.add_command(label="Cliente", command=None)
-    open_menu.add_command(label="Estoque", command=None)
-    open_menu.add_command(label="Agendamento", command=None)
-    open_menu.add_command(label="Separação", command=None)
-    open_menu.add_command(label="Expedição", command=None)
-    open_menu.add_command(label="Compra", command=None)
-    open_menu.add_command(label="Venda", command=None)
-    open_menu.add_command(label="Financeiro", command=None)
     # Editar.
     menu_principal.add_cascade(label="Editar", menu=edit_menu)
     edit_menu.add_command(label="Funcionario", command=None)
@@ -83,7 +70,7 @@ def menu(entry_user):
     frame11.grid_columnconfigure(0, weight=4)
     frame11.grid_columnconfigure(1, weight=1)
     
-    entry111 = customtkinter.CTkEntry(frame11, placeholder_text="Selecionar o arquivo/diretorio")
+    entry111 = customtkinter.CTkEntry(frame11, placeholder_text="Selecione o arquivo/diretorio")
     entry111.grid(sticky="sew", padx=10, pady=10, column=0, row=0)
 
     button111 = customtkinter.CTkButton(frame11, text="Procurar", command=lambda: select_file(entry111))
@@ -109,7 +96,6 @@ def menu(entry_user):
     frame12.add("Pedidos Pendentes")
     frame12.add("Pedidos Separados")
 
-    label121 = customtkinter.CTkLabel(frame12.tab("Pedidos Pendentes"), text="")
 
     #
     frame2 = customtkinter.CTkFrame(app)
@@ -121,7 +107,7 @@ def menu(entry_user):
     frame21.grid_columnconfigure(0, weight=1)
 
     
-    label211 = customtkinter.CTkLabel(frame21, text=f"{entry_user}", font=("Calibri", 20, "bold"))
+    label211 = customtkinter.CTkLabel(frame21, text=f"{entry_user}", font=("Calibri", 20, "italic"))
     label211.grid(sticky="nsew", padx=5, pady=5, column=0, row=0)
 
     frame2_2 = customtkinter.CTkFrame(frame2)
@@ -129,43 +115,43 @@ def menu(entry_user):
     frame2_2.grid_columnconfigure(0, weight=1)
 
 
-    button0 = customtkinter.CTkButton(frame2_2, text="Agendamentos", command=lambda: open_folder(AGENDAMENTOS))
+    button0 = customtkinter.CTkButton(frame2_2, text="Agendamentos", font=("Calibri", 15), command=lambda: open_folder(AGENDAMENTOS))
     button0.grid(sticky="nsew", padx=10, pady=10, column=0, row=0)
 
-    button1 = customtkinter.CTkButton(frame2_2, text="Compras", command=lambda: open_folder(COMPRAS))
+    button1 = customtkinter.CTkButton(frame2_2, text="Compras", font=("Calibri", 15), command=lambda: open_folder(COMPRAS))
     button1.grid(sticky="nsew", padx=10, pady=10, column=0, row=1)
 
-    button2 = customtkinter.CTkButton(frame2_2, text="Clientes", command=lambda: open_folder(CLIENTES))
+    button2 = customtkinter.CTkButton(frame2_2, text="Clientes", font=("Calibri", 15), command=lambda: open_folder(CLIENTES))
     button2.grid(sticky="nsew", padx=10, pady=10, column=0, row=2)
 
-    button3 = customtkinter.CTkButton(frame2_2, text="Financeiro", command=lambda: open_folder(FINANCEIRO))
+    button3 = customtkinter.CTkButton(frame2_2, text="Financeiro", font=("Calibri", 15), command=lambda: open_folder(FINANCEIRO))
     button3.grid(sticky="nsew", padx=10, pady=10, column=0, row=3)
 
-    button4 = customtkinter.CTkButton(frame2_2, text="Fornecedores", command=lambda: open_folder(FORNECEDORES))
+    button4 = customtkinter.CTkButton(frame2_2, text="Fornecedores", font=("Calibri", 15), command=lambda: open_folder(FORNECEDORES))
     button4.grid(sticky="nsew", padx=10, pady=10, column=0, row=4)
 
-    button5 = customtkinter.CTkButton(frame2_2, text="Funcionarios", command=lambda: open_folder(FUNCIONARIOS))
+    button5 = customtkinter.CTkButton(frame2_2, text="Funcionarios", font=("Calibri", 15), command=lambda: open_folder(FUNCIONARIOS))
     button5.grid(sticky="nsew", padx=10, pady=10, column=0, row=5)
 
-    button6 = customtkinter.CTkButton(frame2_2, text="Estoque", command=lambda: open_folder(ESTOQUE))
+    button6 = customtkinter.CTkButton(frame2_2, text="Estoque", font=("Calibri", 15), command=lambda: open_folder(ESTOQUE))
     button6.grid(sticky="nsew", padx=10, pady=10, column=0, row=6)
 
-    button7 = customtkinter.CTkButton(frame2_2, text="Registros", command=lambda: open_folder(REGISTROS))
+    button7 = customtkinter.CTkButton(frame2_2, text="Registros", font=("Calibri", 15), command=lambda: open_folder(REGISTROS))
     button7.grid(sticky="nsew", padx=10, pady=10, column=0, row=7)
 
-    button8 = customtkinter.CTkButton(frame2_2, text="Recebimentos", command=lambda: open_folder(RECEBIMENTOS))
+    button8 = customtkinter.CTkButton(frame2_2, text="Recebimentos", font=("Calibri", 15), command=lambda: open_folder(RECEBIMENTOS))
     button8.grid(sticky="nsew", padx=10, pady=10, column=0, row=8)
 
-    button9 = customtkinter.CTkButton(frame2_2, text="Relatorios", command=lambda: open_folder(RELATORIOS))
+    button9 = customtkinter.CTkButton(frame2_2, text="Relatorios", font=("Calibri", 15), command=lambda: open_folder(RELATORIOS))
     button9.grid(sticky="nsew", padx=10, pady=10, column=0, row=9)
 
-    button10 = customtkinter.CTkButton(frame2_2, text="Separação", command=lambda: open_folder(SEPARACAO))
+    button10 = customtkinter.CTkButton(frame2_2, text="Separação", font=("Calibri", 15), command=lambda: open_folder(SEPARACAO))
     button10.grid(sticky="nsew", padx=10, pady=10, column=0, row=10)
 
-    button11 = customtkinter.CTkButton(frame2_2, text="Expedição", command=lambda: open_folder(EXPEDICAO))
+    button11 = customtkinter.CTkButton(frame2_2, text="Expedição", font=("Calibri", 15), command=lambda: open_folder(EXPEDICAO))
     button11.grid(sticky="nsew", padx=10, pady=10, column=0, row=11)
 
-    button12 = customtkinter.CTkButton(frame2_2, text="Vendas", command=lambda: open_folder(VENDAS))
+    button12 = customtkinter.CTkButton(frame2_2, text="Vendas", font=("Calibri", 15), command=lambda: open_folder(VENDAS))
     button12.grid(sticky="nsew", padx=10, pady=10, column=0, row=12)
 
 

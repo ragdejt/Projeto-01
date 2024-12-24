@@ -3,8 +3,7 @@ import pandas
 from tkinter import messagebox
 from constants import *
 from app_functions import *
-from log_record import LOG_APPOINTMENT
-
+from databases import *
 def new_appointment():
     def button_new_appointment():
         new_data = {
@@ -21,9 +20,9 @@ def new_appointment():
         spreadsheet_name = time.strftime(SPREADSHEET_NAME)
 
         with pandas.ExcelWriter(path=AGENDAMENTOS / f"{spreadsheet_name}.xlsx", engine="xlsxwriter") as writer:
-            pandas.DataFrame(columns=COLUMN_LIST_APPOINTMENT, data=new_data).to_excel(writer, sheet_name=new_data["CLIENTE"][0], index=False)
+            pandas.DataFrame(columns=COLUMN_LIST_AGENDAMENTOS, data=new_data).to_excel(writer, sheet_name=new_data["CLIENTE"][0], index=False)
 
-        LOG_APPOINTMENT.debug(f"[AGENDAMENTO]: {spreadsheet_name} - [RESPONSAVEL/AGENDAMENTO]: {resp_agendamento.get()} - [CADASTRADO] - [✓]")
+        LOG_AGENDAMENTO.debug(f"[AGENDAMENTO]: {spreadsheet_name} - [RESPONSAVEL/AGENDAMENTO]: {resp_agendamento.get()} - [CADASTRADO] - [✓]")
         messagebox.showinfo("Informação cadastrada", "Informação cadastrada")
 
         cliente.delete(0, "end")
@@ -37,7 +36,7 @@ def new_appointment():
         data_agendamento.delete(0, "end")
 
 
-    app = create_app("Novo agendamento","480x400")
+    app = create_app("480x400")
     app.grid_columnconfigure(0, weight=1)
     
     frame0 = create_frame(app, 0, 0, "nsew")

@@ -1,9 +1,30 @@
 # Import necessary libraries.
-from login import login
-from check_files import checking_files
+from users import login
+from constants import *
+from databases import *
+
 # Main.
 def main():
-    checking_files()
+    for cam in FOLDER_LIST:
+        cam.mkdir(exist_ok=True)
+        LOG_CHECK.info(f"[DIRETÓRIO]:{cam} - [STATUS] - [✓]")
+    LOG_CHECK.debug("[ARQUIVOS/DIRETÓRIOS] - [✓]")
+    
+    create_db(DB_USUARIOS, "USUARIOS", LOG_USUARIOS, COLUMN_LIST_USUARIOS)
+    create_db(DB_FUNCIONARIOS, "FUNCIONARIOS", LOG_FUNCIONARIOS, COLUMN_LIST_FUNCIONARIOS)
+    create_db(DB_AGENDAMENTOS, "AGENDAMENTOS", LOG_AGENDAMENTO, COLUMN_LIST_AGENDAMENTOS)
+    create_db(DB_COMPRAS, "COMPRAS", LOG_COMPRAS, COLUMN_LIST_COMPRAS)
+    create_db(DB_CLIENTES, "CLIENTES", LOG_CLIENTES, COLUMN_LIST_CLIENTES)
+    create_db(DB_FINANCEIRO, "FINANCEIRO", LOG_FINANCEIRO, COLUMN_LIST_FINANCEIRO)
+    create_db(DB_FORNECEDORES, "FORNECEDORES", LOG_FORNECEDORES, COLUMN_LIST_FORNECEDORES)
+    create_db(DB_FUNCIONARIOS, "FUNCIONARIOS", LOG_FUNCIONARIOS, COLUMN_LIST_FUNCIONARIOS)
+    create_db(DB_ESTOQUE, "ESTOQUE", LOG_ESTOQUE, COLUMN_LIST_ESTOQUE)
+    create_db(DB_RECEBIMENTOS, "RECEBIMENTOS", LOG_RECEBIMENTOS, COLUMN_LIST_RECEBIMENTOS)
+    create_db(DB_RELATORIOS, "RELATORIOS", LOG_RELATORIOS, COLUMN_LIST_RELATORIOS)
+    create_db(DB_SEPARACAO, "SEPARACAO", LOG_SEPARACAO, COLUMN_LIST_SEPARACAO)
+    create_db(DB_EXPEDICAO, "EXPEDICAO", LOG_EXPEDICAO, COLUMN_LIST_EXPEDICAO)
+    create_db(DB_VENDAS, "VENDAS", LOG_VENDAS, COLUMN_LIST_VENDAS)
+
     login()
 if __name__ == "__main__":
     main()

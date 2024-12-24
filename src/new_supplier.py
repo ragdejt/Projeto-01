@@ -1,6 +1,6 @@
 import pandas
 import shutil
-from log_record import LOG_SUPPLIER
+from databases import *
 from app_functions import *
 from constants import *
 from tkinter import messagebox
@@ -27,18 +27,14 @@ def new_supplier():
         supplier_path.mkdir(exist_ok=True)
 
         with pandas.ExcelWriter(path=f"{supplier_path}.xlsx" , engine="xlsxwriter") as writer:
-            pandas.DataFrame(columns=COLUMN_LIST_SUPPLIER, data=new_data).to_excel(writer, sheet_name=razao_social.get(), index=False)
+            pandas.DataFrame(columns=COLUMN_LIST_FORNECEDORES, data=new_data).to_excel(writer, sheet_name=razao_social.get(), index=False)
 
         shutil.copy(alvara_path.get(), supplier_path / ("Alvara.pdf"))
         shutil.copy(mei_path.get(), supplier_path / ("Certificado MEI.pdf"))
         shutil.copy(contract_path.get(), supplier_path / ("Contrato Social.pdf"))
         shutil.copy(license_path.get(), supplier_path / ("Certificado_Licença.pdf"))
 
-        LOG_SUPPLIER.debug(f"[FORNECEDOR]: {razao_social.get()} - [CADASTRADO] - [✓]")
-        LOG_SUPPLIER.info(f"[ARQUIVO]: {alvara_path.get()} - [COPIADO] - [✓]")
-        LOG_SUPPLIER.info(f"[ARQUIVO]: {mei_path.get()} - [COPIADO] - [✓]")
-        LOG_SUPPLIER.info(f"[ARQUIVO]: {contract_path.get()} - [COPIADO] - [✓]")
-        LOG_SUPPLIER.info(f"[ARQUIVO]: {license_path.get()} - [COPIADO] - [✓]")
+        LOG_FORNECEDORES.debug(f"[FORNECEDOR]: {razao_social.get()} - [CADASTRADO] - [✓]")
 
         razao_social.delete(0, "end")
         cnpj.delete(0, "end")
@@ -54,7 +50,7 @@ def new_supplier():
         messagebox.showinfo("Informação cadastrada", "Informação cadastrada")
 
 
-    app = create_app("Novo fornecedor", "1080x750")
+    app = create_app("1080x750")
     app.grid_rowconfigure(0, weight=1)
     app.grid_columnconfigure(0, weight=1)
     app.grid_columnconfigure(1, weight=2)

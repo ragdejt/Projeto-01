@@ -4,9 +4,8 @@ import pandas
 from tkinter import messagebox
 from app_functions import *
 from constants import *
-from log_record import LOG_EMPLOYEE
+from databases import *
 from dataclasses import dataclass
-
 @dataclass
 class Funcionario:
     nome:str
@@ -59,8 +58,8 @@ def add_employee(employee: Funcionario):
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (employee.nome, employee.nascimento, employee.sexo, employee.cargo, employee.admissao, employee.salario, employee.ctps, employee.rg, employee.cpf, employee.estado_civil, employee.contrato, employee.escolaridade, employee.endereço, employee.cidade, employee.estado, employee.telefone, employee.email))
         conectar.commit()
     except sqlite3.IntegrityError:
-        LOG_EMPLOYEE.debug(f"[FUNCIONARIO]: {employee.nome} - [ENCONTRADO] - [BANCO DE DADOS]: {DB_FUNCIONARIOS}")
-        LOG_EMPLOYEE.info()
+        LOG_FUNCIONARIOS.debug(f"[FUNCIONARIO]: {employee.nome} - [ENCONTRADO] - [BANCO DE DADOS]: {DB_FUNCIONARIOS}")
+        LOG_FUNCIONARIOS.info()
     else:
         conectar.close()
 
@@ -92,7 +91,7 @@ def new_employee():
         employee_path.mkdir(exist_ok=True)
         
         with pandas.ExcelWriter(path=f"{employee_path}.xlsx", engine="xlsxwriter") as writer:
-            pandas.DataFrame(columns=COLUMN_LIST_EMPLOYEE, data=new_data).to_excel(writer, sheet_name=new_data["NOME"][0], index=False)
+            pandas.DataFrame(columns=COLUMN_LIST_FUNCIONARIOS, data=new_data).to_excel(writer, sheet_name=new_data["NOME"][0], index=False)
 
 
         shutil.copy(admission_path.get(), employee_path / ("Exame admissional.pdf"))
@@ -102,15 +101,13 @@ def new_employee():
         shutil.copy(contract_path.get(), employee_path / ("Contrato.pdf"))
         shutil.copy(education_path.get(), employee_path / ("Comprovante de escolaridade.pdf"))
         shutil.copy(address_path.get(), employee_path / ("Comprovante de endereço.pdf"))
-        
-        LOG_EMPLOYEE.debug(f"[FUNCIONARIO]: {new_data['NOME'][0]} - [CADASTRADO] - [✓]")
-        LOG_EMPLOYEE.info(f"[ARQUIVO]: {admission_path.get()} - [COPIADO] - [✓]")
-        LOG_EMPLOYEE.info(f"[ARQUIVO]: {ctps_path.get()} - [COPIADO] - [✓]")
-        LOG_EMPLOYEE.info(f"[ARQUIVO]: {rg_path.get()} - [COPIADO] - [✓]")
-        LOG_EMPLOYEE.info(f"[ARQUIVO]: {cpf_path.get()} - [COPIADO] - [✓]")
-        LOG_EMPLOYEE.info(f"[ARQUIVO]: {contract_path.get()} - [COPIADO] - [✓]")
-        LOG_EMPLOYEE.info(f"[ARQUIVO]: {education_path.get()} - [COPIADO] - [✓]")
-        LOG_EMPLOYEE.info(f"[ARQUIVO]: {address_path.get()} - [COPIADO] - [✓]")
+        LOG_FUNCIONARIOS.info(f"[ARQUIVO]: {admission_path.get()} - [COPIADO] - [✓]")
+        LOG_FUNCIONARIOS.info(f"[ARQUIVO]: {ctps_path.get()} - [COPIADO] - [✓]")
+        LOG_FUNCIONARIOS.info(f"[ARQUIVO]: {rg_path.get()} - [COPIADO] - [✓]")
+        LOG_FUNCIONARIOS.info(f"[ARQUIVO]: {cpf_path.get()} - [COPIADO] - [✓]")
+        LOG_FUNCIONARIOS.info(f"[ARQUIVO]: {contract_path.get()} - [COPIADO] - [✓]")
+        LOG_FUNCIONARIOS.info(f"[ARQUIVO]: {education_path.get()} - [COPIADO] - [✓]")
+        LOG_FUNCIONARIOS.info(f"[ARQUIVO]: {address_path.get()} - [COPIADO] - [✓]")
 
         messagebox.showinfo("Informação cadastrada", "Informação cadastrada")
         
@@ -150,10 +147,10 @@ def new_employee():
 
         add_employee(funcionario)
 
-        LOG_EMPLOYEE.debug(f"[FUNCIONARIO]: {funcionario.nome} - [CADASTRADO] - [BANCO DE DADOS]: {DB_FUNCIONARIOS} - [✓]")
+        LOG_FUNCIONARIOS.debug(f"[FUNCIONARIO]: {funcionario.nome} - [BANCO DE DADOS]: {DB_FUNCIONARIOS} - [✓]")
 
     # App.
-    app = create_app("Adicionar funcionario", "1000x750")
+    app = create_app("1000x750")
     app.grid_columnconfigure(0, weight=1)
     app.grid_columnconfigure(1, weight=2)
 
